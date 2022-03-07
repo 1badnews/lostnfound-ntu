@@ -8,49 +8,51 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="267dp"
-        android:layout_height="60dp"
+        android:layout_width="236dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textSize="34sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/registerEmail"
+        app:layout_constraintBottom_toTopOf="@+id/registerStudentID"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="160dp"
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ntushield" />
 
     <EditText
         android:id="@+id/registerEmail"
         android:layout_width="321dp"
         android:layout_height="48dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/registerStudentID"
+        app:layout_constraintStart_toStartOf="@+id/registerStudentID"
+        app:layout_constraintTop_toBottomOf="@+id/registerStudentID"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/registerPassword"
         android:layout_width="321dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -63,7 +65,7 @@
         android:id="@+id/registerPassword2"
         android:layout_width="321dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
@@ -76,7 +78,7 @@
         android:id="@+id/registerButton"
         android:layout_width="238dp"
         android:layout_height="58dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Register"
         app:iconTint="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/registerPassword2"
@@ -93,5 +95,18 @@
         app:layout_constraintEnd_toEndOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="@+id/registerButton"
         app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+
+    <EditText
+        android:id="@+id/registerStudentID"
+        android:layout_width="323dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="88dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Student ID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
