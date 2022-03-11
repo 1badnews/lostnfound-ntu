@@ -9,6 +9,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,6 +21,7 @@ public class PrimaryActivity extends AppCompatActivity  implements NavigationVie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primary);
 
@@ -35,7 +39,10 @@ public class PrimaryActivity extends AppCompatActivity  implements NavigationVie
         if (savedInstanceState==null){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LostItemsFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_lostitems);}
+
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
