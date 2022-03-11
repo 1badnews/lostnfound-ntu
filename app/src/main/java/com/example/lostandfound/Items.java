@@ -7,7 +7,7 @@ public class Items
     private String Contacts;
     private String User;
 
-
+ public Items() {}
 
     public Items(String title, String description, String contacts, String user) {
         Title = title;
