@@ -3,10 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/activity_primary.xml" value="0.1398148148148148" />
+        <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/activity_main.xml" value="0.15579710144927536" />
+        <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/activity_primary.xml" value="0.22" />
         <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/activity_register.xml" value="0.1398148148148148" />
         <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/fragment_lostitems.xml" value="0.33" />
-        <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/fragment_myitems.xml" value="0.1398148148148148" />
+        <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/fragment_myitems.xml" value="0.22" />
         <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/fragment_postitem.xml" value="0.33" />
         <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/item.xml" value="0.18541666666666667" />
         <entry key="..\:/coding/ACTUALMPA/app/src/main/res/layout/nav_header.xml" value="0.1398148148148148" />
