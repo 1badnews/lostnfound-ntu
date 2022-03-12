@@ -29,7 +29,7 @@ public class PostItemFragment extends Fragment {
         ItemsEdit itm = new ItemsEdit();
         pbutton.setOnClickListener(v->
         {
-            Items item = new Items(ptitle.getText().toString().trim(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail);
+            Items item = new Items(ptitle.getText().toString().trim().toUpperCase(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail);
             itm.add(item).addOnSuccessListener(suc->
             {
                 Toast.makeText(getActivity(),"Item is submitted!",Toast.LENGTH_SHORT).show();

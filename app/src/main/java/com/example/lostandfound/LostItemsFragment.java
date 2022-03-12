@@ -1,9 +1,14 @@
 package com.example.lostandfound;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +27,7 @@ public class LostItemsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View retrn = inflater.inflate(R.layout.fragment_lostitems,container,false);
-
+        setHasOptionsMenu(true);
         recyclerview= retrn.findViewById(R.id.itemlist);
         recyclerview.setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -46,5 +51,37 @@ public class LostItemsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         itemadapter.stopListening();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.searching, menu);
+        MenuItem item = menu.findItem(R.id.searching);
+        SearchView searchView = (SearchView)item.getActionView();
+        searchView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                search(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                search(s);
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    private void search(String txt)
+    {
+        FirebaseRecyclerOptions<Items> options = new FirebaseRecyclerOptions.Builder<Items>()
+                .setQuery(FirebaseDatabase.getInstance().getReference().child("Items").orderByChild("title").startAt(txt).endAt(txt+"~"), Items.class )
+                .build();
+        itemadapter = new ItemAdapter(options);
+        itemadapter.startListening();
+        recyclerview.setAdapter(itemadapter);
+
     }
 }
