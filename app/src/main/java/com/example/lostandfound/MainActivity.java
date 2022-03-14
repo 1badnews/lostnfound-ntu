@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         register = (TextView) findViewById(R.id.loginRegisterButton);
         register.setOnClickListener(this);
         login = (Button) findViewById(R.id.loginButton);

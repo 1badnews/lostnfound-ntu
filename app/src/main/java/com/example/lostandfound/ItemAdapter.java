@@ -1,9 +1,13 @@
 package com.example.lostandfound;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +25,7 @@ public class ItemAdapter  extends FirebaseRecyclerAdapter<Items,ItemAdapter.myVi
      *
      * @param options
      */
+
     public ItemAdapter(@NonNull FirebaseRecyclerOptions<Items> options) {
         super(options);
     }
@@ -29,7 +34,19 @@ public class ItemAdapter  extends FirebaseRecyclerAdapter<Items,ItemAdapter.myVi
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Items model) {
+
         holder.title.setText(model.getTitle());
+        final String key = this.getRef(position).getKey();
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), InfoActivity.class);
+                intent.putExtra("key",key);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+
 
     }
 
@@ -44,11 +61,21 @@ public class ItemAdapter  extends FirebaseRecyclerAdapter<Items,ItemAdapter.myVi
 
         CircleImageView image;
         TextView title;
+        View view;
+        TextView description;
+        TextView contacts;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            description = (TextView) itemView.findViewById(R.id.post_description);
+            contacts = (TextView) itemView.findViewById(R.id.post_contacts);
             image = (CircleImageView) itemView.findViewById(R.id.itempic);
             title = (TextView) itemView.findViewById(R.id.titletext);
+            view = itemView.findViewById(R.id.clickitem);
+
+
+
         }
     }
 

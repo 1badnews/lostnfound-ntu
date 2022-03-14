@@ -9,8 +9,12 @@
 
 
     <RelativeLayout
+
+        android:id="@+id/clickitem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:padding="15dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -26,11 +30,11 @@
             android:id="@+id/titletext"
             android:layout_width="242dp"
             android:layout_height="96dp"
-
             android:layout_marginLeft="-3dp"
-
-
             android:layout_toRightOf="@+id/itempic"
+
+
+            android:clickable="true"
             android:gravity="center"
             android:text="text1"
             android:textColor="@color/NTUblack"
