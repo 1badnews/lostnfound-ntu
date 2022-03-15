@@ -1,21 +1,42 @@
 package com.example.lostandfound;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
 
 public class PostItemFragment extends Fragment {
+    ImageView pimage;
+    FirebaseStorage storage;
+    Uri imageuri;
+    String imgdownloadurl;
+    EditText ptitle, pdescription, pcontacts;
+    String pemail;
+    ItemsEdit itm;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -23,24 +44,89 @@ public class PostItemFragment extends Fragment {
         final EditText ptitle = retrn.findViewById(R.id.post_title);
         final EditText pdescription = retrn.findViewById(R.id.post_description);
         final EditText pcontacts = retrn.findViewById(R.id.post_contacts);
+        pimage = retrn.findViewById(R.id.post_image);
         FirebaseUser loggedinuser = FirebaseAuth.getInstance().getCurrentUser();
         final String pemail = loggedinuser.getEmail();
+        storage = FirebaseStorage.getInstance();
         Button pbutton = retrn.findViewById(R.id.post_button);
         ItemsEdit itm = new ItemsEdit();
+
+        pimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mGetContent.launch("image/*");
+            }
+        });
+
+
         pbutton.setOnClickListener(v->
         {
-            Items item = new Items(ptitle.getText().toString().trim().toUpperCase(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail);
-            itm.add(item).addOnSuccessListener(suc->
-            {
-                Toast.makeText(getActivity(),"Item is submitted!",Toast.LENGTH_SHORT).show();
-            }).addOnFailureListener(error->
-            {
-                Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
-            });
+            uploadtostorage(ptitle,pdescription,pcontacts,itm,pemail);
+
         });
 
         return retrn;
     }
+
+    private void uploadtostorage(EditText ptitle, EditText pdescription, EditText pcontacts, ItemsEdit itm, String pemail) {
+
+    if (imageuri!= null)
+    {
+        StorageReference reference = storage.getReference().child("postimages/" + UUID.randomUUID().toString());
+        reference.putFile(imageuri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+
+                if (task.isSuccessful())
+                {
+                    Toast.makeText(getActivity(), "yaaay", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        reference.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+
+
+                    Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!urlTask.isSuccessful()) ;
+                    Uri downloadUrl = urlTask.getResult();
+
+                    imgdownloadurl = String.valueOf(downloadUrl);
+                    Toast.makeText(getActivity(), imgdownloadurl, Toast.LENGTH_SHORT).show();
+                Items item = new Items(ptitle.getText().toString().trim().toUpperCase(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail, imgdownloadurl);
+                itm.add(item).addOnSuccessListener(suc->
+                {
+                    Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(error->
+                {
+                    Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
+                });
+
+            }});}
+
+
+    }
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    if (result!=null)
+                    {
+                        pimage.setImageURI(result);
+                        imageuri = result;
+                    }
+
+                }
+            });
+
+
+
 
 
 }

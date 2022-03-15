@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,22 @@ public class EditInfoActivity extends AppCompatActivity {
 
 
 
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbref.child(key).removeValue().addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o)
+                    {
+                        Intent i = new  Intent(EditInfoActivity.this,PrimaryActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+
+            }
+        });
+
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,13 +83,17 @@ public class EditInfoActivity extends AppCompatActivity {
         dbref.child(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    String title= snapshot.child("title").getValue().toString();
+                    String desc= snapshot.child("description").getValue().toString();
+                    String contacts= snapshot.child("contacts").getValue().toString();
+                    edit_title.setText(title);
+                    edit_description.setText(desc);
+                    edit_contacts.setText(contacts);
+                } catch (Exception e) {
 
-                String title= snapshot.child("title").getValue().toString();
-                String desc= snapshot.child("description").getValue().toString();
-                String contacts= snapshot.child("contacts").getValue().toString();
-                edit_title.setText(title);
-                edit_description.setText(desc);
-                edit_contacts.setText(contacts);
+                }
+
             }
 
             @Override
@@ -82,13 +103,7 @@ public class EditInfoActivity extends AppCompatActivity {
     });
 
 
-        delete_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dbref.child(key).removeValue();
 
-            }
-        });
 
 
 

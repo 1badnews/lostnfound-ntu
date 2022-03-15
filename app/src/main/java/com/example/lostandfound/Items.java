@@ -6,14 +6,16 @@ public class Items
     private String Description;
     private String Contacts;
     private String User;
+    private String Image;
 
  public Items() {}
 
-    public Items(String title, String description, String contacts, String user) {
+    public Items(String title, String description, String contacts, String user, String image) {
         Title = title;
         Description = description;
         Contacts = contacts;
         User = user;
+        Image = image;
     }
 
 
@@ -49,5 +51,13 @@ public class Items
 
     public void setContacts(String contacts) {
         Contacts = contacts;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 }

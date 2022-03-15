@@ -8,13 +8,14 @@
 
     <ImageView
         android:id="@+id/post_image"
-        android:layout_width="171dp"
-        android:layout_height="143dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="185dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:src="@drawable/ic_addphoto" />
 
     <EditText
         android:id="@+id/post_title"

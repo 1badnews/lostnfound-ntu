@@ -35,6 +35,7 @@ public class MyItemsFragment extends Fragment {
                 .build();
 
         itemadapter = new ItemAdapter(options);
+        recyclerview.setItemAnimator(null);
         recyclerview.setAdapter(itemadapter);
         return retrn;
 
