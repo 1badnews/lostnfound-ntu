@@ -10,21 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/LostandFound">
         <activity
+            android:name=".EditInfoActivity"
+            android:exported="false"
+            android:theme="@style/LostandFound"/>
+        <activity
             android:name=".InfoActivity"
-            android:theme="@style/LostandFound"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/LostandFound" />
         <activity
             android:name=".PrimaryActivity"
-            android:theme="@style/LostandFoundNoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/LostandFoundNoActionBar" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/LostandFoundNoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/LostandFoundNoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/LostandFoundNoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/LostandFoundNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +27,30 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         xmltitle=findViewById(R.id.infotitle);
-       // xmldesc=findViewById(R.id.infodescription);
-        //xmlcontacts=findViewById(R.id.infocontacts);
+        xmldesc=findViewById(R.id.infodescription);
+        xmlcontacts=findViewById(R.id.infocontacts);
         ref = FirebaseDatabase.getInstance().getReference().child("Items");
         String key = getIntent().getStringExtra("key");
 
+            ref.child(key).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-            xmltitle.setText(key);
+                    String title= snapshot.child("title").getValue().toString();
+                    String desc= snapshot.child("description").getValue().toString();
+                    String contacts= snapshot.child("contacts").getValue().toString();
+                    xmltitle.setText(title);
+                    xmldesc.setText(desc);
+                    xmlcontacts.setText(contacts);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
 
 
     }

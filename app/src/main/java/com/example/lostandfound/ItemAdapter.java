@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,19 +36,33 @@ public class ItemAdapter  extends FirebaseRecyclerAdapter<Items,ItemAdapter.myVi
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull Items model) {
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String useremail = user.getEmail();
+        String itememail = model.getUser();
         holder.title.setText(model.getTitle());
         final String key = this.getRef(position).getKey();
-        holder.title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), InfoActivity.class);
-                intent.putExtra("key",key);
-                view.getContext().startActivity(intent);
-            }
-        });
+        if (useremail.equals(itememail))
+        {
+            holder.title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), EditInfoActivity.class);
+                    intent.putExtra("key", key);
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }
+        if (!useremail.equals(itememail)) {
+            holder.title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), InfoActivity.class);
+                    intent.putExtra("key", key);
+                    view.getContext().startActivity(intent);
+                }
+            });
 
-
+        }
 
     }
 

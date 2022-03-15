@@ -29,7 +29,7 @@ public class MyItemsFragment extends Fragment {
         View retrn = inflater.inflate(R.layout.fragment_myitems,container,false);
         recyclerview= retrn.findViewById(R.id.itemlist);
         recyclerview.setLayoutManager(new LinearLayoutManager(requireContext()));
-
+        recyclerview.setItemAnimator(null);
         FirebaseRecyclerOptions<Items> options = new FirebaseRecyclerOptions.Builder<Items>()
                 .setQuery(FirebaseDatabase.getInstance().getReference().child("Items").orderByChild("user").equalTo(email), Items.class )
                 .build();
