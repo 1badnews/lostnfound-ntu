@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,7 @@ public class InfoActivity extends AppCompatActivity {
     TextView xmldesc;
     TextView xmlcontacts;
     DatabaseReference ref;
+    private ImageView xmlimage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class InfoActivity extends AppCompatActivity {
         xmltitle=findViewById(R.id.infotitle);
         xmldesc=findViewById(R.id.infodescription);
         xmlcontacts=findViewById(R.id.infocontacts);
+        xmlimage=findViewById(R.id.infoimage);
         ref = FirebaseDatabase.getInstance().getReference().child("Items");
         String key = getIntent().getStringExtra("key");
 
@@ -36,6 +40,10 @@ public class InfoActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                    String imageurl = snapshot.child("image").getValue().toString();
+                    Glide.with(getApplicationContext())
+                            .load(imageurl)
+                            .into(xmlimage);
                     String title= snapshot.child("title").getValue().toString();
                     String desc= snapshot.child("description").getValue().toString();
                     String contacts= snapshot.child("contacts").getValue().toString();

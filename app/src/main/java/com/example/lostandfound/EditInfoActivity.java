@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +28,7 @@ public class EditInfoActivity extends AppCompatActivity {
     private EditText edit_title,edit_description,edit_contacts;
     private Button edit_button, delete_button;
     private DatabaseReference dbref;
+    private ImageView edit_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class EditInfoActivity extends AppCompatActivity {
         edit_description=findViewById(R.id.edit_description);
         edit_contacts=findViewById(R.id.edit_contacts);
         edit_button=findViewById(R.id.edit_button);
+        edit_image=findViewById(R.id.edit_image);
         String key = getIntent().getStringExtra("key");
         delete_button = findViewById(R.id.delete_button);
 
@@ -61,6 +66,7 @@ public class EditInfoActivity extends AppCompatActivity {
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String title = edit_title.getText().toString();
                 String description = edit_description.getText().toString();
                 String contacts = edit_contacts.getText().toString();
@@ -84,6 +90,10 @@ public class EditInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
+                    String imageurl = snapshot.child("image").getValue().toString();
+                    Glide.with(getApplicationContext())
+                            .load(imageurl)
+                            .into(edit_image);
                     String title= snapshot.child("title").getValue().toString();
                     String desc= snapshot.child("description").getValue().toString();
                     String contacts= snapshot.child("contacts").getValue().toString();
