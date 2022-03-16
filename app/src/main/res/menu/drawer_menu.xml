@@ -4,19 +4,34 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_lostitems"
-            android:title="Lost Items" />
+            android:title="Lost Items"
+            android:icon="@drawable/ic_lostitems"    />
         <item
             android:id="@+id/nav_postitem"
-            android:title="Post an Item" />
+            android:title="Post an Item"
+            android:icon="@drawable/ic_postitem"/>
         <item
             android:id="@+id/nav_myitems"
-            android:title="My Items" />
+            android:title="My Items"
+            android:icon="@drawable/ic_myitems"/>
 
-        <item
-            android:id="@+id/nav_logout"
-            android:title="Logout"
-            />
+
     </group>
 
+    <item android:title="Management">
+        <menu>
 
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings"
+                android:icon="@drawable/ic_settings"/>
+
+
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout"
+                android:icon="@drawable/ic_logout"
+                />
+        </menu>
+    </item>
 </menu>
