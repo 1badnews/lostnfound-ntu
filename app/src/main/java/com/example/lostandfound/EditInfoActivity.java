@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 
@@ -30,6 +32,7 @@ public class EditInfoActivity extends AppCompatActivity {
     private DatabaseReference dbref;
     private ImageView edit_image;
 
+    String imageurl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +53,13 @@ public class EditInfoActivity extends AppCompatActivity {
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                StorageReference storef = FirebaseStorage.getInstance().getReferenceFromUrl(imageurl);
+                storef.delete();
                 dbref.child(key).removeValue().addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o)
                     {
+
                         Intent i = new  Intent(EditInfoActivity.this,PrimaryActivity.class);
                         startActivity(i);
                     }
@@ -90,7 +96,7 @@ public class EditInfoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
-                    String imageurl = snapshot.child("image").getValue().toString();
+                    imageurl = snapshot.child("image").getValue().toString();
                     Glide.with(getApplicationContext())
                             .load(imageurl)
                             .into(edit_image);

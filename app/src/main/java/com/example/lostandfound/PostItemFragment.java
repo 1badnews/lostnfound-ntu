@@ -3,6 +3,7 @@ package com.example.lostandfound;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,14 +62,30 @@ public class PostItemFragment extends Fragment {
 
         pbutton.setOnClickListener(v->
         {
-            uploadtostorage(ptitle,pdescription,pcontacts,itm,pemail);
+            uploadtostorage();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    Items item = new Items(ptitle.getText().toString().trim().toUpperCase(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail, imgdownloadurl);
+                    itm.add(item).addOnSuccessListener(suc->
+                    {
+                        Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(error->
+                    {
+                        Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }, 6000);
+
+
+
 
         });
 
         return retrn;
     }
 
-    private void uploadtostorage(EditText ptitle, EditText pdescription, EditText pcontacts, ItemsEdit itm, String pemail) {
+    private void uploadtostorage() {
 
     if (imageuri!= null)
     {
@@ -80,7 +97,7 @@ public class PostItemFragment extends Fragment {
 
                 if (task.isSuccessful())
                 {
-                    Toast.makeText(getActivity(), "yaaay", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -97,15 +114,8 @@ public class PostItemFragment extends Fragment {
                     Uri downloadUrl = urlTask.getResult();
 
                     imgdownloadurl = String.valueOf(downloadUrl);
-                    Toast.makeText(getActivity(), imgdownloadurl, Toast.LENGTH_SHORT).show();
-                Items item = new Items(ptitle.getText().toString().trim().toUpperCase(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail, imgdownloadurl);
-                itm.add(item).addOnSuccessListener(suc->
-                {
-                    Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
-                }).addOnFailureListener(error->
-                {
-                    Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
-                });
+
+
 
             }});}
 
