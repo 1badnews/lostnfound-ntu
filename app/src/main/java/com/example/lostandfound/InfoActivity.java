@@ -43,7 +43,9 @@ public class InfoActivity extends AppCompatActivity {
                     String imageurl = snapshot.child("image").getValue().toString();
                     Glide.with(getApplicationContext())
                             .load(imageurl)
+                            .error(R.drawable.ic_items)
                             .into(xmlimage);
+
                     String title= snapshot.child("title").getValue().toString();
                     String desc= snapshot.child("description").getValue().toString();
                     String contacts= snapshot.child("contacts").getValue().toString();

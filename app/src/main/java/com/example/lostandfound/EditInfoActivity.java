@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,8 +54,10 @@ public class EditInfoActivity extends AppCompatActivity {
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference storef = FirebaseStorage.getInstance().getReferenceFromUrl(imageurl);
-                storef.delete();
+                if (!imageurl.equals("NoImage")) {
+                    StorageReference storef = FirebaseStorage.getInstance().getReferenceFromUrl(imageurl);
+                    storef.delete();
+                }
                 dbref.child(key).removeValue().addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o)
@@ -97,8 +100,10 @@ public class EditInfoActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
                     imageurl = snapshot.child("image").getValue().toString();
+
                     Glide.with(getApplicationContext())
                             .load(imageurl)
+                            .error(R.drawable.ic_items)
                             .into(edit_image);
                     String title= snapshot.child("title").getValue().toString();
                     String desc= snapshot.child("description").getValue().toString();

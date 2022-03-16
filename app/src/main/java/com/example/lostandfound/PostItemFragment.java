@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,35 @@ public class PostItemFragment extends Fragment {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    Items item = new Items(ptitle.getText().toString().trim().toUpperCase(),pdescription.getText().toString().trim(),pcontacts.getText().toString().trim(), pemail, imgdownloadurl);
+                    String title = ptitle.getText().toString().trim().toUpperCase();
+                    String contacts = pcontacts.getText().toString().trim();
+
+                    if (title.isEmpty()){
+                        ptitle.setError("Please enter a title!");
+                        ptitle.requestFocus();
+                        return;
+                    }
+                    if (contacts.isEmpty()){
+                        pcontacts.setError("Please enter your contact details!");
+                        pcontacts.requestFocus();
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(imgdownloadurl))
+                    {
+                        imgdownloadurl = "NoImage";
+                        Items item = new Items(title,pdescription.getText().toString().trim(),contacts, pemail, imgdownloadurl);
+                        itm.add(item).addOnSuccessListener(suc->
+                        {
+                            Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
+                        }).addOnFailureListener(error->
+                        {
+                            Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
+                        });
+                        return;
+                    }
+
+                    Items item = new Items(title,pdescription.getText().toString().trim(),contacts, pemail, imgdownloadurl);
                     itm.add(item).addOnSuccessListener(suc->
                     {
                         Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
@@ -86,6 +115,8 @@ public class PostItemFragment extends Fragment {
     }
 
     private void uploadtostorage() {
+
+
 
     if (imageuri!= null)
     {

@@ -41,8 +41,7 @@ public class ItemAdapter  extends FirebaseRecyclerAdapter<Items,ItemAdapter.myVi
         Glide.with(holder.image.getContext())
                 .load(model.getImage())
                 .placeholder(R.drawable.ic_items)
-                .circleCrop()
-                .error(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_items)
                 .into(holder.image);
 
 
