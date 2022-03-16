@@ -3,7 +3,7 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    android:tint="@color/NTUblue">
+    android:tint="?attr/colorSecondary">
 
   <path
       android:fillColor="@color/NTUblue"

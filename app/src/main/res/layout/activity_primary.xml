@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/NTUwhite"
+    android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
     tools:context=".PrimaryActivity"
     tools:openDrawer="start">
@@ -19,13 +19,13 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/NTUpink" />
+            android:background="?attr/colorPrimary" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/NTUwhite">
+            android:background="?attr/colorSecondary">
 
         </FrameLayout>
     </LinearLayout>
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/NTUwhite"
+        android:background="?attr/colorSecondary"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

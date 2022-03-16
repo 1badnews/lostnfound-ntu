@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditInfoActivity"
-    android:background="@color/NTUwhite">
+    android:background="?attr/colorSecondary">
 
         <ImageView
             android:id="@+id/edit_image"

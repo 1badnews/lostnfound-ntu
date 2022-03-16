@@ -3,28 +3,28 @@
     <style name="LostandFound" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/NTUpink</item>
-        <item name="colorPrimaryVariant">@color/NTUblue</item>
+        <item name="colorPrimaryVariant">@color/NTUpink</item>
         <item name="colorOnPrimary">@color/NTUwhite</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/NTUblue</item>
+        <item name="colorSecondary">@color/NTUwhite</item>
         <item name="colorSecondaryVariant">@color/NTUblue</item>
-        <item name="colorOnSecondary">@color/NTUwhite</item>
+        <item name="colorOnSecondary">@color/NTUblack</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="LostandFoundNoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/NTUpink</item>
-        <item name="colorPrimaryVariant">@color/NTUblue</item>
+        <item name="colorPrimaryVariant">@color/NTUpink</item>
         <item name="colorOnPrimary">@color/NTUwhite</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/NTUblue</item>
+        <item name="colorSecondary">@color/NTUwhite</item>
         <item name="colorSecondaryVariant">@color/NTUblue</item>
-        <item name="colorOnSecondary">@color/NTUwhite</item>
+        <item name="colorOnSecondary">@color/NTUblack</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
