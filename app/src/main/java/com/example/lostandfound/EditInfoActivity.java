@@ -83,6 +83,7 @@ public class EditInfoActivity extends AppCompatActivity {
                 hashMap.put("contacts",contacts);
                 hashMap.put("description",description);
                 hashMap.put("title",title);
+                Toast.makeText(getApplicationContext(),"You have edited an item!",Toast.LENGTH_SHORT).show();
 
 
 

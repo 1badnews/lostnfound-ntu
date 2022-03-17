@@ -64,7 +64,7 @@
         android:id="@+id/loginButton"
         android:layout_width="238dp"
         android:layout_height="58dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="68dp"
         android:text="Login"
 
         app:iconTint="@color/black"
@@ -82,6 +82,18 @@
         app:layout_constraintEnd_toEndOf="@+id/loginButton"
         app:layout_constraintStart_toStartOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintVertical_bias="0.205" />
+
+    <TextView
+        android:id="@+id/Lostpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:text="Lost your password? Click here!"
+        android:textColor="?attr/colorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/loginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

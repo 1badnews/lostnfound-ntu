@@ -108,6 +108,7 @@ public class PrimaryActivity extends AppCompatActivity  implements NavigationVie
 
                 break;
             case R.id.nav_logout:
+                Toast.makeText(PrimaryActivity.this,"You have logged out!",Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(PrimaryActivity.this, MainActivity.class);
                 PrimaryActivity.this.startActivity(intent);

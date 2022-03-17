@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -64,6 +65,7 @@ public class PostItemFragment extends Fragment {
         pbutton.setOnClickListener(v->
         {
             uploadtostorage();
+            Toast.makeText(getActivity(),"Posting an item...",Toast.LENGTH_LONG).show();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -87,7 +89,7 @@ public class PostItemFragment extends Fragment {
                         Items item = new Items(title,pdescription.getText().toString().trim(),contacts, pemail, imgdownloadurl);
                         itm.add(item).addOnSuccessListener(suc->
                         {
-                            Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"You have posted a new item!",Toast.LENGTH_SHORT).show();
                         }).addOnFailureListener(error->
                         {
                             Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
@@ -98,13 +100,13 @@ public class PostItemFragment extends Fragment {
                     Items item = new Items(title,pdescription.getText().toString().trim(),contacts, pemail, imgdownloadurl);
                     itm.add(item).addOnSuccessListener(suc->
                     {
-                        Toast.makeText(getActivity(),"zjbs" + imgdownloadurl,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"You have posted a new item!",Toast.LENGTH_SHORT).show();
                     }).addOnFailureListener(error->
                     {
                         Toast.makeText(getActivity(),"Item failed to submit!",Toast.LENGTH_SHORT).show();
                     });
                 }
-            }, 6000);
+            }, 5000);
 
 
 
