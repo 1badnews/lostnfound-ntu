@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="147dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ntushield"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/changeemail"
+        android:layout_width="381dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="New Email Address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentnumber" />
+
+    <Button
+        android:id="@+id/changeemailbtn"
+        android:layout_width="269dp"
+        android:layout_height="50dp"
+        android:text="Change Email Address"
+        app:layout_constraintStart_toStartOf="@+id/changeemail"
+        app:layout_constraintTop_toBottomOf="@+id/changeemail" />
+
+    <Button
+        android:id="@+id/changepasswordbtn"
+        android:layout_width="269dp"
+        android:layout_height="50dp"
+        android:text="Change Password"
+        app:layout_constraintStart_toStartOf="@+id/changeemail"
+        app:layout_constraintTop_toBottomOf="@+id/changepassword" />
+
+    <EditText
+        android:id="@+id/changepassword"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/changeemailbtn"
+        app:layout_constraintTop_toBottomOf="@+id/changeemailbtn" />
+
+    <EditText
+        android:id="@+id/changepassword2"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/changeemail"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/changepassword"
+        app:layout_constraintTop_toBottomOf="@+id/changeemailbtn" />
+
+    <TextView
+        android:id="@+id/currentaddress"
+        android:layout_width="408dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Email addy"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/currentnumber"
+        android:layout_width="408dp"
+        android:layout_height="39dp"
+        android:gravity="center"
+        android:text="N number"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentaddress" />
+
+    <Button
+        android:id="@+id/deleteaccbtn"
+        android:layout_width="269dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:text="Delete Account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/changepasswordbtn"
+        app:layout_constraintTop_toBottomOf="@+id/changepasswordbtn" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="380dp"
+        android:layout_height="21dp"
+        android:text="Changing the address will result in a deletion of your items!"
+        android:textColor="#FF0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeemailbtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

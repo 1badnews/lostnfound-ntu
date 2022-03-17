@@ -17,7 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +32,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
-public class PrimaryActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class PrimaryActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener,DialogClass.DialogInterfaceListener {
 
     private DrawerLayout draw;
     TextView nnumber;
     TextView emailaddy;
+    public String email,pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +112,19 @@ public class PrimaryActivity extends AppCompatActivity  implements NavigationVie
                 Intent intent = new Intent(PrimaryActivity.this, MainActivity.class);
                 PrimaryActivity.this.startActivity(intent);
                 break;
+
+            case R.id.nav_settings:
+                openDialog();
+                break;
+
         }
         draw.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openDialog() {
+        DialogClass dialog = new DialogClass();
+        dialog.show(getSupportFragmentManager(), "Dialog");
     }
 
     @Override
@@ -119,5 +134,26 @@ public class PrimaryActivity extends AppCompatActivity  implements NavigationVie
         } else{
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void reauth(String username, String password) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        email = username;
+        pass = password;
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(email, pass);
+        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                } else {
+                    Toast.makeText(PrimaryActivity.this,"User failed to reauthenticate!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
