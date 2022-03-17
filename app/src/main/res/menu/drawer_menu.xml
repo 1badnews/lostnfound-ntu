@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_lostitems"
-            android:title="Lost Items"
+            android:title="Found Items"
             android:icon="@drawable/ic_lostitems"    />
         <item
             android:id="@+id/nav_postitem"
@@ -12,7 +12,7 @@
             android:icon="@drawable/ic_postitem"/>
         <item
             android:id="@+id/nav_myitems"
-            android:title="My Items"
+            android:title="Your Posted Items"
             android:icon="@drawable/ic_myitems"/>
 
 
