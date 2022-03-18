@@ -12,8 +12,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class DialogClass  extends AppCompatDialogFragment {
-    private EditText editTextUsername;
-    private EditText editTextPassword;
+    private EditText dialogusername;
+    private EditText dialogpassword;
     public DialogInterfaceListener listener;
 
     @Override
@@ -34,14 +34,14 @@ public class DialogClass  extends AppCompatDialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String username = editTextUsername.getText().toString();
-                        String password = editTextPassword.getText().toString();
+                        String username = dialogusername.getText().toString();
+                        String password = dialogpassword.getText().toString();
                         listener.reauth(username, password);
                     }
                 });
 
-        editTextUsername = view.findViewById(R.id.dialogusername);
-        editTextPassword = view.findViewById(R.id.dialogpassword);
+        dialogusername = view.findViewById(R.id.dialogusername);
+        dialogpassword = view.findViewById(R.id.dialogpassword);
 
         return builder.create();
     }
