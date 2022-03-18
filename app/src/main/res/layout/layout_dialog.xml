@@ -6,16 +6,17 @@
 
     <EditText
         android:id="@+id/dialogusername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="395dp"
+        android:layout_height="60dp"
         android:hint="Email Address" />
 
     <EditText
         android:id="@+id/dialogpassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="395dp"
+        android:layout_height="60dp"
         android:layout_below="@id/dialogusername"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
         android:hint="Password"
         android:inputType="textPassword" />
 
